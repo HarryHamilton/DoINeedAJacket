@@ -1,5 +1,5 @@
 import requests
-
+from statistics import mean
 """ Somes end points for future reference
 print(data["timeseries"][0])  # This accesses the timeseries part of the json
 print(data["timeseries"][0]["latest"])  # accesses "latest" part of json
@@ -15,6 +15,13 @@ for i in range(len(endpoint)):
     response = requests.get(endpoint[i])
     data = response.json()
     temps.append(data["timeseries"][0]["latest"]["value"])  # accesses the value :)
+
+if (mean(temps) < 18.0):
+    print("The temperature is", mean(temps), "c you need a jacket")
+else:
+    print("The temperature is", mean(temps), "c you don't a jacket")
+
+
 
 
 
